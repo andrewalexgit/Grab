@@ -1,0 +1,26 @@
+	[ Grab Server - V1.0.1 ]
+	   File: Readme.text
+
+###########################
+#							            #
+#			      Grab			    #
+#							            #
+#	 Designed and Developed #
+#							            #
+#   		    by			      #
+#							            #
+#      Andrew Campagna	  #
+#							            #
+#						            	#
+###########################
+
+Introduction:
+
+I'd like to introduce Grab which is my first attempt to create some useful back-end
+software. The idea behind grab is to create a security blanket for SQL injection by 
+(1) eliminating the use of having an application directly accessing a database, (2)
+no longer having applications available to the public that build SQL Strings on the spot to be executed, and (3) pre-verifying SQL execution against a table of permissable commands.
+
+Be forewarned; this is version of Grab is the first ever and is totally experiemental.
+This copy is not intended to be used for anything other than the foundation for future
+development, or scientific research. It is strongly advised that this software not be used for sensitive operations such as handling sensitive data or in applications with high volumes of users.
