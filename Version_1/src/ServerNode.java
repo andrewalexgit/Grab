@@ -44,8 +44,8 @@ public class ServerNode {
 	public boolean setup() throws IOException {
 		socket = server.accept();
 		input = new DataInputStream(new BufferedInputStream(socket.getInputStream())); 
-        output = new DataOutputStream(socket.getOutputStream());
-        return true;
+        	output = new DataOutputStream(socket.getOutputStream());
+        	return true;
 	}
 
 	// Concatenates together data from the inputstream until keyword 'end' which then returns the data in a String
