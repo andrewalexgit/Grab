@@ -2,11 +2,14 @@ import java.net.*;
 import java.io.*;
 
 /*
-	ServerNode Class Version 1.0.1
+	ServerNode Class Version 1.1.1
 	ServerNode.java documentation can be found in /docs folder.
-	Last tested by Andrew Campagna 10/23/2018.
+	Last tested by Andrew Campagna 10/27/2018.
 
-	Notes: Everything seems to be running efficiently!
+	Notes: Major updates to the way that the Server's Rx/Tx functions work. The update
+	has been successfully tested with the following clients: Java, PHP, and 
+	a C/C++ loaded ESP8266 module. This is a major update and will now open doors
+	for implementing a new feature which creates profile objects for the client connections.
 **/
 
 public class ServerNode {
@@ -15,8 +18,9 @@ public class ServerNode {
 	
 	private int port;
 	private String name;
-	private DataInputStream input;
-	private DataOutputStream output;
+	private InputStreamReader inputStream;
+	private BufferedReader input;
+	private PrintStream output;
 	private ServerSocket server;
 	private Socket socket;
 
@@ -40,39 +44,43 @@ public class ServerNode {
 		this(5000 + NodeCount, ("Node_"+ NodeCount));
 	}
 
-	// When a client connects to the server, both an inputstream and outputstream are established
 	public boolean setup() throws IOException {
 		socket = server.accept();
-		input = new DataInputStream(new BufferedInputStream(socket.getInputStream())); 
-        	output = new DataOutputStream(socket.getOutputStream());
-        	return true;
+		inputStream = new InputStreamReader(socket.getInputStream());
+		input = new BufferedReader(inputStream);
+		output = new PrintStream(socket.getOutputStream());
+        return true;
 	}
 
-	// Concatenates together data from the inputstream until keyword 'end' which then returns the data in a String
 	public String listen(String key) throws IOException {
 		String line = "";
 		String temp = "";
 		while (!temp.equals(key)) {
-			temp = input.readUTF();
+			temp = input.readLine();
 			line += temp;
 		}
 		return line.substring(0, (line.length() - key.length()));
 	}
 
-	// Default listen method
 	public String listen() throws IOException {
 		String line = "";
 		String temp = "";
 		while (!temp.equals("end")) {
-			temp = input.readUTF();
+			temp = input.readLine();
 			line += temp;
 		}
 		return line.substring(0, (line.length() - 3));
 	}
 
+	/********************************
+	 *								*
+	 *	   Main Server Functions 	*	
+	 *								*
+	 *********************************/
+
 	// Simple way to serve the connected client responses
 	public void write(String line) throws IOException {
-		output.writeUTF(line);
+		output.println(line);
 	}
 
 	// Kills the entire node safely
