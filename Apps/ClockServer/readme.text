@@ -1,0 +1,5 @@
+This is a very simple example of something that can be done with Grab. The server node is created and has enough functionality
+to where a custom main method is built around it. The program waits for data to come in, and if a packet reads 'datetime@' the
+server will prepare a date time string and serve it to the client. In this case to show how flexible this technology can be
+the device running the client is an ESP8266 Feather HUZZAH board running Arduino and displays the time using an SSD1306 LCD
+display. Together both the server and client create a crude but highly accurate internet clock.
