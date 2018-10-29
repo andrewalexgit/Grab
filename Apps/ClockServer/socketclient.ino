@@ -10,8 +10,8 @@
 
 ESP8266WiFiMulti WiFiMulti;
 
-char ssid[] = "Fios-LBPBU";          //  your network SSID (name) 
-char pass[] = "end9823wet8602meat";   // your network password
+char ssid[] = "----";          //  your network SSID (name) 
+char pass[] = "----";   // your network password
 
 void setup() {
 
@@ -48,7 +48,7 @@ void setup() {
 
 void loop() {
   const uint16_t port = 5000;
-  const char * host = "192.168.1.151"; // ip or dns
+  const char * host = "----"; // ip or dns
 
 
 
