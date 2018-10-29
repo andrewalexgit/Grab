@@ -2,14 +2,13 @@ import java.net.*;
 import java.io.*;
 
 /*
-	ServerNode Class Version 1.1.1
+	ServerNode Class Version 1.1.2
 	ServerNode.java documentation can be found in /docs folder.
-	Last tested by Andrew Campagna 10/27/2018.
+	Last tested by Andrew Campagna 10/28/2018.
 
-	Notes: Major updates to the way that the Server's Rx/Tx functions work. The update
-	has been successfully tested with the following clients: Java, PHP, and 
-	a C/C++ loaded ESP8266 module. This is a major update and will now open doors
-	for implementing a new feature which creates profile objects for the client connections.
+	Notes: ServerNode works excellent working as a singular server process, but
+	the next step from here will be testing the creation of multiple nodes running
+	as seperate threaded processes.
 **/
 
 public class ServerNode {
@@ -44,6 +43,8 @@ public class ServerNode {
 		this(5000 + NodeCount, ("Node_"+ NodeCount));
 	}
 
+	/* Waits for a client to successfully connect, then constructs input 
+	   and output streams for the server. **/
 	public boolean setup() throws IOException {
 		socket = server.accept();
 		inputStream = new InputStreamReader(socket.getInputStream());
@@ -52,6 +53,8 @@ public class ServerNode {
         return true;
 	}
 
+	/* Listens for incoming data, and concatenates it into one String object until
+	   the input stream hits a 'key' word to end the listening stream. **/
 	public String listen(String key) throws IOException {
 		String line = "";
 		String temp = "";
@@ -62,6 +65,7 @@ public class ServerNode {
 		return line.substring(0, (line.length() - key.length()));
 	}
 
+	/* No-argument listener that uses preset 'key' value 'end' to end listening stream. **/
 	public String listen() throws IOException {
 		String line = "";
 		String temp = "";
@@ -72,18 +76,12 @@ public class ServerNode {
 		return line.substring(0, (line.length() - 3));
 	}
 
-	/********************************
-	 *								*
-	 *	   Main Server Functions 	*	
-	 *								*
-	 *********************************/
-
-	// Simple way to serve the connected client responses
+	/* Simple output stream writing method **/
 	public void write(String line) throws IOException {
 		output.println(line);
 	}
 
-	// Kills the entire node safely
+	/* Kills the present ServerNode and decrements the static NodeCount **/
 	public void kill() throws IOException {
 		input.close();
 		output.close();
