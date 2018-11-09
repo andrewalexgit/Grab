@@ -15,8 +15,8 @@ public interface FileAccessable {
 	boolean loadFile();
 	void clear();
 	void refresh();
-	//void writeFile(String data);
-	ArrayList getData();
+	void writeFile(String data);
+	ArrayList<String> getData();
 	/**********************/
 
 	/***********************
