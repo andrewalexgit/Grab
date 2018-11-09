@@ -1,0 +1,36 @@
+ -------------------------------------
+|         ______           __         |
+|       / ____/________ _/ /_         |
+|      / / __/ ___/ __ `/ __ \        |
+|     / /_/ / /  / /_/ / /_/ /        |
+|     \____/_/   \__,_/_.___/         |
+|                                     |
+| Grab Server Library - Version 2.0.0 |
+ -------------------------------------
+
+Synopsis of Grab, and the Version 2 update.
+
+  Grab is a simple project that was created for educational gain and has served its purpose well so far. The idea
+  behind the software is to simplify the task of creating a quick back end server with lots of customizable options.
+  The first version of this library was a good stepping stone but was origionally intended to provide the most basic
+  tcp server possible. In the midst of testing the library with connections to all kinds of different technology
+  (Various web-clients, python scripts, arduino devices, and other Java clients) and having great success creating
+  all kinds of interesting applications and devices it was decided to take the project more seriously. This is why
+  the first version is really crude and unfinished and will remain that way. 
+  
+Summary of Grab 2.
+
+  Like stated in the synopsis this project is meant for educational gain and grows more sophisticated as time
+  goes on. Unlike the old version this library features more than just an easily accessable simple TCP server object.
+  First the architecture is completely redesigned and configured in a manner where the core server object is intended
+  to be used with all kinds of interfaces. The design of this new server interface system opens a door for tons
+  of customizable options and contributions. For a good example one could look at the FileAccessable interface
+  which is used by the FileServer. Just like before you can it two lines of code you can setup a fully funtioning 
+  TCP server except when using the FileServer it will be equiped with an entire file management system.
+  
+Features
+
+  - New server architecture
+  - Custom server interfaces
+  - Updated core server methods
+  - First pre-made interface: File management system based server
