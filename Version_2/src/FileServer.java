@@ -11,12 +11,27 @@ public class FileServer extends ServerConnection implements FileAccessable {
 	
 	private File filepath;
 	private Scanner in;
+	private BufferedWriter out;
 
 	ArrayList<String> data = new ArrayList<String>();
 
 	public FileServer(int port, File filepath) {
 		super(port);
 		this.filepath = filepath;
+	}
+
+	/**********************
+	 * Global
+	 **/
+	public void kill() {
+
+		try {
+			in.close();
+			out.close();
+		} catch (IOException ioe) {
+			// Error when closing input and outputs
+			System.out.println("<6>");
+		}
 	}
 
 	/**********************
@@ -27,8 +42,6 @@ public class FileServer extends ServerConnection implements FileAccessable {
 	 **/
 	public boolean loadFile() {
 		if (!in.hasNext()) {
-			//<3> No data available to load from file
-			System.out.println("<3>");
 			return false;
 		} else {
 			while(in.hasNext()) {
@@ -49,15 +62,39 @@ public class FileServer extends ServerConnection implements FileAccessable {
 	 * Clears and reloads data
 	 **/
 	public void refresh() {
+
 		data.clear();
+
+		try {
+			in = new Scanner(filepath);
+		} catch (FileNotFoundException fnfe) {
+			//<9> Given filepath does not exist
+			System.out.println("<9>");
+		}
+
 		loadFile();
 	}
 
 	/*
 	 * Returns available data in ArrayList
 	 **/
-	public ArrayList getData() {
+	public ArrayList<String> getData() {
 		return data;
+	}
+
+	public void writeFile(String data) {
+
+		try {
+			out.append(data);
+			out.flush();
+		} catch (IOException ioe) {
+			//<8> Error when appending data to file
+			System.out.println("<8>");
+		}
+	}
+
+	public String toString() {
+		return toString();
 	}
 
 	/***********************
@@ -69,11 +106,15 @@ public class FileServer extends ServerConnection implements FileAccessable {
 	public boolean init() {
 		if (setup()) {
 			try {
-				in = new Scanner(filepath);
+				refresh();
+				out = new BufferedWriter(new FileWriter(filepath.getAbsoluteFile(), true));
 			} catch (FileNotFoundException fnfe) {
 				//<4> Given filepath does not exist
 				System.out.println("<4>");
 				return false;
+			} catch (IOException ioe) {
+				//<7> BufferedWriter failed to enstantiate
+				System.out.println("<7>");
 			}
 			return true;
 		} else {
