@@ -8,7 +8,7 @@
 | Grab Server Library - Version 2.0.1 |
  -------------------------------------
 
-Synopsis of Grab, and the Version 2 update.
+Summary of Grab, and the Version 2 update.
 
   Grab is a simple project that was created for educational gain and has served its purpose well so far. The idea
   behind the software is to simplify the task of creating a quick back end server with lots of customizable options.
@@ -18,9 +18,9 @@ Synopsis of Grab, and the Version 2 update.
   all kinds of interesting applications and devices it was decided to take the project more seriously. This is why
   the first version is really crude and unfinished and will remain that way. 
   
-Summary of Grab 2.
+Synopsis of Grab 2.
 
-  Like stated in the synopsis this project is meant for educational gain and grows more sophisticated as time
+  Like stated in the summary this project is meant for educational gain and grows more sophisticated as time
   goes on. Unlike the old version this library features more than just an easily accessable simple TCP server object.
   First the architecture is completely redesigned and configured in a manner where the core server object is intended
   to be used with all kinds of interfaces. The design of this new server interface system opens a door for tons
