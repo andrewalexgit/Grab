@@ -26,7 +26,7 @@ public class ServerIO {
 	 **/
 	public String listen() throws IOException {
 		String data = "";
-		while(!input.ready()) {
+		while(data.equals("") {
 			data += input.readLine();
 		}
 		return data;
