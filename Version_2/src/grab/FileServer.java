@@ -9,7 +9,7 @@ package grab;
 import java.io.*;
 import java.util.*;
 
-public class FileServer extends ServerConnection implements FileAccessable {
+public class FileServer extends ServerConnection implements SystemAccessable {
 	
 	private File filepath;
 	private Scanner in;
