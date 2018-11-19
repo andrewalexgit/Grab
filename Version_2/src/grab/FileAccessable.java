@@ -1,9 +1,11 @@
 package grab;
 
 /*
-*	Interface for file type servers
+*	Interface for file type servers 
 *
 *	Developed by, Andrew C.
+*
+*	Obsolete!
 **/
 
 import java.util.*;
