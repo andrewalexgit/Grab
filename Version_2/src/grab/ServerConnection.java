@@ -42,6 +42,23 @@ public class ServerConnection extends ServerObj {
 
 		}
 	}
+        
+        public void kill() {
+            
+            try {
+                
+                serverio.closeAll();
+                server.close();
+                socket.close();
+                
+            } catch (IOException ioe) {
+                
+                // <10> Failed to close socket safely
+                System.out.println("Failed to close socket safely");
+                
+            }
+            
+        }
 
 	public String toString() {
 		return getName() + " on port " + getPort();

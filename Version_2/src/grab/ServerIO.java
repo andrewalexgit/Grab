@@ -16,25 +16,32 @@ public class ServerIO {
 	private PrintStream output;
 
 	public ServerIO(Socket socket) throws IOException {
-		inputStream = new InputStreamReader(socket.getInputStream());
-		input = new BufferedReader(inputStream);
-		output = new PrintStream(socket.getOutputStream());
+            inputStream = new InputStreamReader(socket.getInputStream());
+            output = new PrintStream(socket.getOutputStream());
+            input = new BufferedReader(inputStream);
 	}
 	
 	/*
-	 *	New listen method no longer requires a key!
+	 *  New listen method no longer requires a key!
 	 **/
 	public String listen() throws IOException {
-		String data = "";
-		while(data.equals("") {
-			data += input.readLine();
+            String data = "";
+		while(data.equals("")) {
+                    data += input.readLine();
 		}
-		return data;
+            return data;
 	}
 
 	// Imported write method from Version_1
 	public void write(String data) {
 		output.println(data);
 	}
+        
+        // Closes data streams
+        public void closeAll() throws IOException {
+            inputStream.close();
+            input.close();
+            output.close();
+        }
 
 }

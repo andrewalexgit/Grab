@@ -44,6 +44,7 @@ public abstract class ServerObj {
 
 	public abstract String listen(); // Listen and return data.
 	public abstract boolean setup(); // Initializes IO and returns success of connection.
-	public abstract void write(String data); // Send data to client
+	public abstract void write(String data); // Send data to client.
+        public abstract void kill(); // Safely shut down the server.
 
 }
